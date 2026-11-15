@@ -1,0 +1,21 @@
+{
+  "name": "app-ui-kit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The shared look of every app in the family: one CSS file and one JS file.",
+  "files": [
+    "src/app_ui_kit/static/",
+    "templates/"
+  ],
+  "style": "src/app_ui_kit/static/app-ui-kit.css",
+  "exports": {
+    "./app-ui-kit.css": "./src/app_ui_kit/static/app-ui-kit.css",
+    "./app-ui-kit.js": "./src/app_ui_kit/static/app-ui-kit.js",
+    "./shell.html": "./templates/shell.html",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "*.css",
+    "./src/app_ui_kit/static/app-ui-kit.js"
+  ]
+}

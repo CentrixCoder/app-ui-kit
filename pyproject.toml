@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "app-ui-kit"
+dynamic = ["version"]
+description = "The shared look of every app in the family: one CSS file, one JS file, and Dash/Flask helpers."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+# Dash apps: the layout helpers and the Auto-run checkbox
+dash = ["dash>=3.0", "dash-bootstrap-components>=2.0"]
+# plain Flask apps
+flask = ["flask>=2.2"]
+test = ["pytest>=8", "dash>=3.0", "dash-bootstrap-components>=2.0", "flask>=2.2"]
+
+[tool.hatch.version]
+path = "src/app_ui_kit/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/app_ui_kit"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/app_ui_kit", "README.md", "CHANGELOG.md", "templates", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

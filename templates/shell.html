@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+  app-ui-kit page skeleton for apps without Dash: plain HTML, Flask/Jinja, React.
+  Copy this STRUCTURE (the class names), never the CSS: link app-ui-kit.css and
+  app-ui-kit.js from the installed package (see README, "Using it").
+
+  Optional: Bootstrap 5 before app-ui-kit.css, if the app uses Bootstrap cards,
+  forms or tabs. The frame below needs no Bootstrap.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App name</title>
+  <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+  <link rel="stylesheet" href="app-ui-kit.css">
+  <!-- the app's own CSS goes here, after the kit, to override a token -->
+</head>
+<body>
+  <div class="app">
+
+    <header class="appbar">
+      <div class="brand">
+        <h1 class="wordmark" title="appName"><span class="wm-a">app</span><span class="wm-b">Name</span></h1>
+        <p class="case" id="app-case">What is on screen, in one line</p>
+      </div>
+      <div class="appbar-tools">
+        <button class="seg-toggle" type="button" aria-pressed="false" aria-label="Switch units">
+          <span class="seg-toggle-label">Imperial · in, lbf</span>
+          <span class="seg-toggle-label">Metric · mm, N</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- with no left pane: <div class="workspace workspace--single"> and only <main> -->
+    <div class="workspace">
+      <aside class="model" style="--model-steps: 2">
+        <div class="pane-head">
+          <h2>Model</h2>
+          <div class="run-tools">
+            <button class="run-btn" type="button"><span class="run-glyph" aria-hidden="true">▶</span>Run analysis</button>
+          </div>
+        </div>
+        <details class="step" open>
+          <summary class="step-head">
+            <span class="step-num">1</span><span class="step-title">Inputs</span><span class="step-sum">summary</span>
+          </summary>
+          <div class="step-body">
+            <div class="card"><div class="card-body">
+              <div class="card-head">Group</div>
+              <label class="input-label" for="x">Width</label>
+              <input id="x" type="number" value="1.25">
+              <p class="field-helper">A short hint under a field.</p>
+            </div></div>
+          </div>
+        </details>
+        <details class="step">
+          <summary class="step-head">
+            <span class="step-num">2</span><span class="step-title">More inputs</span><span class="step-sum"></span>
+          </summary>
+          <div class="step-body">…</div>
+        </details>
+      </aside>
+
+      <main class="main">
+        <div class="verdict verdict--pass" role="status">
+          <span class="vd-status">PASS</span>
+          <div class="vd-cell vd-wide"><span class="vd-cap">Governing</span><span class="vd-val">Bearing</span></div>
+          <div class="vd-cell"><span class="vd-cap">Margin</span><span class="vd-val vd-val--good">+0.42</span></div>
+        </div>
+        <div class="run-feedback">
+          <div class="busy busy-float"><span class="busy-bars"></span><span class="busy-label">Analyzing…</span></div>
+        </div>
+        <div class="card"><div class="card-body">
+          <div class="card-head">Results</div>
+          <table class="results-table">
+            <thead><tr><th>Mode</th><th>Margin</th></tr></thead>
+            <tbody><tr><td>Bearing</td><td><span class="tag-pass">+0.42</span></td></tr></tbody>
+          </table>
+        </div></div>
+      </main>
+    </div>
+
+    <footer class="statusbar">
+      <span class="sb-item">Not run</span>
+      <span class="sb-item">appName · what it does</span>
+      <span class="sb-item sb-right">An aid, not a sign-off</span>
+    </footer>
+
+  </div>
+  <script src="app-ui-kit.js"></script>
+</body>
+</html>
