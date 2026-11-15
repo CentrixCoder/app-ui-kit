@@ -3,6 +3,11 @@
 Versions follow semver. A **minor** release may add tokens, classes or helpers.
 A **major** release renames or removes one, so apps on the old major keep their look until they choose to upgrade.
 
+## 0.1.1 — 2026-11-14
+
+- The package is typed: it ships a `py.typed` marker (PEP 561), so an app's mypy checks its calls into
+  `app_ui_kit` instead of refusing the import (BeamAnalytiX runs mypy in CI). No CSS, JS or API change.
+
 ## 0.1.0 — 2026-11-14
 
 First release, extracted from jointLab's workspace (which took its frame from BeamAnalytiX):

@@ -1,6 +1,6 @@
 {
   "name": "app-ui-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "The shared look of every app in the family: one CSS file and one JS file.",
   "files": [

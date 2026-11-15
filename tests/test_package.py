@@ -80,3 +80,8 @@ def test_the_fingerprint_follows_the_file_content(monkeypatch, tmp_path):
     monkeypatch.undo()
     app_ui_kit.fingerprint.cache_clear()
     assert before != after
+
+
+def test_the_package_is_typed():
+    """PEP 561: apps run mypy against their calls into the kit (BeamAnalytiX's CI does)."""
+    assert (Path(app_ui_kit.__file__).parent / "py.typed").is_file()

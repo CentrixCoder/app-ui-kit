@@ -197,7 +197,7 @@
 
     /* ---------------------------------------------------------------- start */
     window.appUiKit = {
-        version: "0.1.0",
+        version: "0.1.1",
         recolorPlots: recolorPlots,
         resizePlots: kick,
         userChangedRecently: function () { return Date.now() - lastUserInput < GATE_MS; }
