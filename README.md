@@ -28,38 +28,26 @@ It is one CSS file and one JS file, plus thin helpers for Dash and Flask:
 
 ## Rules
 
-1. **Import, never copy.** If an app needs a different look, override a **token** in the app's own CSS. That CSS loads after the kit. For example, `:root { --model-w: 360px; }`.
-2. **Pin a version.** Apps install a tag (`v0.1.0`), never `main`. That way a kit change reaches an app only when that app upgrades.
+1. **Import, never copy.** The kit is a baseline: an app restyles or adds effects in its own CSS, which loads after the kit. Override a **token** (`:root { --model-w: 360px; }`) or restyle a component; never paste the kit's files into the app.
+2. **Pin a version.** Apps install a tag (e.g. `v0.1.1`), never `main`. That way a kit change reaches an app only when that app upgrades.
 3. **Change the look here, once.** Do it in a new version, with a `CHANGELOG.md` entry. Renaming or removing a class or token is a major version.
 
-## Installing (private repo)
+## Installing
 
-The repo is private, so installing needs GitHub credentials.
-
-- **On your own machine:** your normal git login is enough.
-- **On Render (or any CI):** the build needs a token.
-  1. On GitHub, create a fine-grained personal access token with **read-only Contents** access to **this one repository**.
-  2. In each Render service, under **Environment**, add it as `GITHUB_TOKEN`.
-  3. Put this line at the start of the service's build command:
-
-     ```bash
-     git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/" &&
-     ```
-
-  It lets both `pip` and `npm` fetch the repo, and keeps the token out of every file in the app.
+The repo is public, so nothing needs a token: not your machine, Render, CI or a browser. Always install a tag (below, `v0.1.1`; see `CHANGELOG.md` for the latest).
 
 ### Dash apps
 
 In `requirements.txt` (or `pyproject.toml`):
 
 ```
-app-ui-kit[dash] @ git+https://github.com/CentrixCoder/app-ui-kit.git@v0.1.0
+app-ui-kit[dash] @ git+https://github.com/CentrixCoder/app-ui-kit.git@v0.1.1
 ```
 
 > **Hash-locked apps (`pip install --require-hashes`, like jointLab):** pip cannot hash a git requirement. Keep the kit out of the lock and install it in a second step:
 >
 > ```
-> pip install --require-hashes -r requirements.lock && pip install --no-deps "app-ui-kit @ git+https://github.com/CentrixCoder/app-ui-kit.git@v0.1.0"
+> pip install --require-hashes -r requirements.lock && pip install --no-deps "app-ui-kit @ git+https://github.com/CentrixCoder/app-ui-kit.git@v0.1.1"
 > ```
 
 ```python
@@ -91,7 +79,7 @@ python examples/dash_demo.py
 ### Other Python apps (Flask)
 
 ```
-app-ui-kit[flask] @ git+https://github.com/CentrixCoder/app-ui-kit.git@v0.1.0
+app-ui-kit[flask] @ git+https://github.com/CentrixCoder/app-ui-kit.git@v0.1.1
 ```
 
 ```python
@@ -106,7 +94,7 @@ In the template, put `{{ app_ui_kit_head() }}` in `<head>` (after Bootstrap, bef
 In `package.json`:
 
 ```json
-"dependencies": { "app-ui-kit": "github:CentrixCoder/app-ui-kit#v0.1.0" }
+"dependencies": { "app-ui-kit": "github:CentrixCoder/app-ui-kit#v0.1.1" }
 ```
 
 ```js
@@ -118,7 +106,14 @@ Use the class names from `templates/shell.html` in your components.
 
 ### Plain HTML / static sites
 
-A browser cannot load files straight from a private repo. Add a build step that installs the kit with npm (above), then copy `node_modules/app-ui-kit/src/app_ui_kit/static/*` next to the page. Link them as `templates/shell.html` does.
+Link the two files from the jsDelivr CDN, pinned to a tag (no build step, no copy):
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CentrixCoder/app-ui-kit@v0.1.1/src/app_ui_kit/static/app-ui-kit.css">
+<script src="https://cdn.jsdelivr.net/gh/CentrixCoder/app-ui-kit@v0.1.1/src/app_ui_kit/static/app-ui-kit.js"></script>
+```
+
+Put the `<link>` after Bootstrap (if used) and before your own CSS, and the `<script>` at the end of `<body>`. Copy the page structure from `templates/shell.html`.
 
 ## Developing the kit
 
